@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructor - View Feedback</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>CSCB20 - Instructor Portal</h1>
+        <h2>Welcome, {{ session['username'] }}</h2>
+    </div>
+    <div class="main">
+        <h2>Student Feedback</h2>
+        {% if feedback_items %}
+        <div class="feedback-container">
+            {% for feedback in feedback_items %}
+                <div class="feedback-question">
+                    <h3>What do you like about the instructor’s teaching?</h3>
+                    <p>{{ feedback.feedback_Q1 or "No response" }}</p>
+                </div>
+                <div class="feedback-question">
+                    <h3>What do you recommend the instructor to do to improve their teaching?</h3>
+                    <p>{{ feedback.feedback_Q2 or "No response" }}</p>
+                </div>
+                <div class="feedback-question">
+                    <h3>What do you like about the labs?</h3>
+                    <p>{{ feedback.feedback_Q3 or "No response" }}</p>
+                </div>
+                <div class="feedback-question">
+                    <h3>What do you recommend the lab instructors to do to improve their lab teaching?</h3>
+                    <p>{{ feedback.feedback_Q4 or "No response" }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        {% else %}
+            <p>No feedback available yet.</p>
+        {% endif %}
+
+    </div>
+
+    <div class="footer">
+        <p>University of Toronto </p>
+    </div>
+</div>
+</body>
+</html>

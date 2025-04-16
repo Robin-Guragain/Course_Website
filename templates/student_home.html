@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Home - CSCB20</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>CSCB20 - Student Portal</h1>
+        <h2>Welcome, {{ session['username'] }}</h2>
+    </div>
+
+    <div class="sidebar">
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('view_marks_students') }}">View Marks</a></li>
+                <li><a href="{{ url_for('submit_feedback_students') }}">Submit Feedback</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="main">
+        <h2>Welcome to Your Student Portal</h2>
+        <p>Choose an option from the sidebar.</p>
+    </div>
+
+    <div class="footer">
+        <p>University of Toronto Scarborough</p>
+    </div>
+</div>
+</body>
+</html>

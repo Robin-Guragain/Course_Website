@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Marks - CSCB20</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<div class="container">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <div class="header">
+        <h1>CSCB20 - Student Marks</h1>
+    </div>
+
+    <div class="main">
+        <h2>Your Marks</h2>
+        <table>
+            <tr>
+                <th>Teacher</th>
+                <th>Evaluation</th>
+                <th>Marks Obtained</th>
+                <th>Total Marks</th>
+                <th>Action</th>
+            </tr>
+            {% for evaluation, teacher in evaluations %}
+            <tr>
+                <td>{{ teacher.name }}</td>
+                <td>{{ evaluation.name }}</td>
+                <td>{{ evaluation.student_marks }}</td>
+                <td>{{ evaluation.total_marks }}</td>
+                <td>
+                    <form action="{{ url_for('view_marks_students') }}" method="POST">
+                        <input type="hidden" name="teacher_id" value="{{ evaluation.teacher_id}}">
+                        <input type="hidden" name="student_id" value="{{ evaluation.student_id }}">
+                        <input type="hidden" name="evaluation_id" value="{{ evaluation.evaluation_id }}">
+                        <input type="text" id="request" name="request" required>
+                        <button type="submit">Request Regrade</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <h2>Regrade Requests </h2>
+        <table>
+            <tr>
+                <th>Regrade Request id</th>
+                <th>Teacher</th>
+                <th>Evaluation</th>
+                <th>status</th>
+            </tr>
+            {% for request, evaluation, teacher in requests %}
+            <tr>
+                <td>{{ request.request_id }}</td>
+                <td>{{ teacher.name }}</td>
+                <td>{{ evaluation.name }}</td>
+                <td>{{ request.status }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="footer">
+        <p>University of Toronto </p>
+    </div>
+</div>
+</body>
+</html>

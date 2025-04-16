@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><!-- Configure all necessary settings in this new website -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSCB20 - WEBSITE FOR THIS COURSE</title>
+  <link rel="stylesheet" href="styles.css">
+  <title>CSS Grid Layout</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      display: grid;
+      grid-template-areas:
+                    "header header"
+                    "sidebar main"
+                    "footer footer";
+      grid-template-columns: 200px 1fr;
+      grid-template-rows: 80px 1fr 60px;
+      height: 100vh;
+      gap: 10px;
+    }
+
+    .header {
+      grid-area: header;
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .sidebar {
+      grid-area: sidebar;
+      background: #666;
+      color: white;
+      padding: 20px;
+    }
+
+    .main {
+      grid-area: main;
+      background: #ccc;
+      padding: 20px;
+    }
+
+    .footer {
+      grid-area: footer;
+      background: #444;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <header><!-- display the header and sub-header for this website -->
+      <h1>CSCB20 - Introduction to Databases and Web Development</h1>
+      <h2>Navigation Menu</h2>
+    </header>
+  </div>
+  <div class="sidebar">
+    <nav>
+      <ul><!-- Create all functional links to each section from the navigation menu -->
+        <li><a href="#home">Home</a></li>
+        <li><a href="#syllabus">Syllabus</a></li>
+        <li><a href="#assignments">Assignments</a></li>
+        <li><a href="#labs">Labs</a></li>
+        <!-- the following three tags are used to open external links in a new tab or window when clicked -->
+        <li><a href="lecture_notes.pdf" target="_blank">Lecture Notes</a></li>
+        <li><a href="https://piazza.com" target="_blank">Piazza</a></li>
+        <li><a href="https://markus.teach.cs.toronto.edu" target="_blank">Markus</a></li>
+        <li><a href="#feedback">Anon Feedback</a></li>
+        <li><a href="#team">Course Team</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="main">
+    <main><!-- We will create the second section here with a header and available texts-->
+      <section id="home">
+        <h2>This is CSCB20, Welcome!</h2>
+        <p>This course covers databases and web development fundamental logistics.</p>
+      </section>
+    </main>
+  </div>
+  <div class="footer">
+    <footer><!-- this is the footer on the bottom that should not be visible until scrolling to the bottom-->
+      <p><a href="https://web.cs.toronto.edu/">Faculty of Computer Science at UofT</a></p>
+      <!-- Below will be declaration of the designers of this new website -->
+      <p>Site design by Jiajun Lei and Robin Guragain</p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

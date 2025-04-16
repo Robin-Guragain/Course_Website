@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSCB20 - Portal for the Course</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>CSCB20 - Portal for this course</h1>
+        <h2>UTSC</h2>
+    </div>
+
+    <div class="sidebar">
+        <nav>
+            <ul>
+
+            </ul>
+        </nav>
+    </div>
+
+    <div class="main">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+        <h2>Welcome to Course Portal of CSCB20</h2>
+        <p>Please login to proceed, or otherwise, register an account for yourself</p>
+
+        <div class="login-container">
+            <h3>Login Page</h3>
+            <form action="{{ url_for('login_page') }}" method="POST">
+                <input type="hidden" name="form_type" value="login">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <div class="register-container">
+            <h3>Register</h3>
+            <form action="{{ url_for('login_page') }}" method="POST">
+                <input type="hidden" name="form_type" value="register">
+
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="new_username">Username:</label>
+                <input type="text" id="new_username" name="new_username" required>
+
+                <label for="new_password">Password:</label>
+                <input type="password" id="new_password" name="new_password" required>
+
+                <label for="user_type">User Type:</label>
+                <select id="user_type" name="user_type">
+                    <option value="student">Student</option>
+                    <option value="teacher">Instructor</option>
+                </select>
+
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Faculty of Computer Science, University of Toronto </p>
+        <p>Site design by Robin Guragain</p>
+    </div>
+</div>
+</body>
+</html>

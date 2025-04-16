@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructor - View Student Marks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>CSCB20 - Instructor Portal</h1>
+        <h2>Welcome, {{ session['username'] }}</h2>
+    </div>
+
+    <div class="main">
+        <h2>Student Marks</h2>
+
+        {% if evaluations %}
+            <table border="1">
+                <tr>
+                    <th>Student Name</th>
+                    <th>ID</th>
+                    <th>Evaluation</th>
+                    <th> Student Marks</th>
+                    <th> Total Marks</th>
+                </tr>
+                {% for evaluation, student in evaluations %}
+                <tr>
+                    <td>{{ student.name }}</td>
+                    <td>{{ evaluation.student_id }}</td>
+                    <td>{{ evaluation.name }}</td>
+                    <td>{{ evaluation.student_marks }}</td>
+                    <td>{{ evaluation.total_marks }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No student marks available.</p>
+        {% endif %}
+        <form action="{{ url_for('view_student_marks') }}" method="POST" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="student_select">Select Student:</label>
+                <select name="student_id" id="student_select" class="navigation_button" required>
+                    <option value="" disabled selected>Choose a student</option>
+                    {% for student in students %}
+                    <option value="{{ student.student_id }}">{{ student.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="evaluation_name">Enter evaluation name*</label>
+                <input type="text" class="form-control" id="evaluation_name" name="evaluation_name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="total_marks">Enter the total marks a student can reiceve:</label>
+                <input type="number" id="total_marks" name="total_marks" class="textarea-style" step="0.01" placeholder="0.00" required>
+            </div>
+
+            <div class="form-group">
+                <label for="student_marks">Enter the students marks:</label>
+                <input type="number" id="student_marks" name="student_marks" class="textarea-style" step="0.01" placeholder="0.00" required>
+            </div>
+
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+
+
+    <div class="footer">
+        <p>University of Toronto </p>
+    </div>
+</div>
+</body>
+</html>

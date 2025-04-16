@@ -1,0 +1,173 @@
+/* Global reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F5F5F5; /* Light Gray background to complement palette */
+    color: #090C08; /* Dark Greenish-Black (used for text) */
+}
+
+/* Container Layout */
+.container {
+    display: grid;
+    grid-template-areas:
+                "header header"
+                "sidebar main"
+                "footer footer";
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 80px auto 60px;
+    height: 100vh;
+    gap: 10px;
+}
+
+/* Header Styling */
+.header {
+    grid-area: header;
+    background: #4A8FE7; /* Light Blue */
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    grid-area: sidebar;
+    background: #59D2FE; /* Sky Blue */
+    color: white;
+    padding: 20px;
+    min-height: 100%;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar nav ul li {
+    padding: 10px 0;
+}
+
+.sidebar nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    padding: 5px;
+}
+
+.sidebar nav ul li a:hover {
+    background: #23CE6B; /* Green */
+    border-radius: 5px;
+    color: #090C08; /* Dark Greenish-Black for text */
+}
+
+/* Main Content Styling */
+.main {
+    grid-area: main;
+    background: #F5F5F5; /* Light Gray */
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Footer Styling */
+.footer {
+    grid-area: footer;
+    background: #5C7AFF; /* Blue */
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+/* Login and Register Containers */
+.login-container, .register-container {
+    width: 300px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+.login-container form, .register-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container input, .register-container input,
+.register-container select, button {
+    margin-top: 10px;
+    padding: 10px;
+}
+
+/* Flash Message Styling */
+.flash-messages {
+    margin: 0 auto;
+    max-width: 300px;
+}
+
+.alert {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Navigation Button Styling */
+.navigation_button {
+    background-color: #4A8FE7; /* Light Blue */
+    color: white;
+    height: 35px;
+    width: 135px;
+    border-radius: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.navigation_button:hover {
+    background-color: #23CE6B; /* Green */
+    color: #090C08; /* Dark Greenish-Black text */
+}
+
+/* Dropdown Menu Styling */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 135px;
+    border-radius: 1px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background-color: #F3E5AB; /* Vanilla */
+    opacity: 0.8;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block}

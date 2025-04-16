@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructor Home - CSCB20</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body><>
+<div class="container">
+    <div class="header">
+        <h1>CSCB20 - Instructor Portal</h1>
+        <h2>Welcome, {{ session['username'] }}</h2>
+    </div>
+
+    <div class="sidebar">
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('view_student_marks') }}">View Student Marks</a></li>
+                <li><a href="{{ url_for('view_feedback') }}">View Feedback</a></li>
+                <li><a href="{{ url_for('view_remark_requests') }}">Regrade Requests</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="main">
+        <h2>Welcome to Your Instructor Portal</h2>
+        <p>Choose an option from the sidebar.</p>
+    </div>
+
+    <div class="footer">
+        <p>University of Toronto </p>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructor - View Remark Requests</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>CSCB20 - Instructor Portal</h1>
+            <h2>Welcome, {{ session['username'] }}</h2>
+        </div>
+        <div class="main">
+            <h2>Remark Requests</h2>
+            <div class="requests_container">
+                {% if requests %}
+                    <table>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Evaluation</th>
+                            <th>Reason</th>
+                            <th>Current Status</th>
+                            <th>Actions</th>
+                        </tr>
+                        {% for request, student_name, evaluation_name in requests %}
+                            <tr>
+                                <td>{{ student_name }}</td>
+                                <td>{{ evaluation_name }}</td>
+                                <td>{{ request.reason }}</td>
+                                <td>{{ request.status }}</td>
+                                <td> {% if request.status == 'pending' %}
+                                    <form method="POST" action="{{ url_for('view_remark_requests') }}" style="display: inline;">
+                                        <input type="hidden" name="request_id" value="{{ request.request_id }}">
+                                        <input type="hidden" name="action" value="approve">
+                                        <button type="submit" class="btn-approve">Approve</button>
+                                    </form>
+                                    <form method="POST" action="{{ url_for('view_remark_requests') }}" style="display: inline;">
+                                        <input type="hidden" name="request_id" value="{{ request.request_id }}">
+                                        <input type="hidden" name="action" value="reject">
+                                        <button type="submit" class="btn-reject">Reject</button>
+                                    </form>
+                                    { % else %}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% else %}
+                    <p>No remark requests found.</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="footer">
+            <p>University of Toronto </p>
+        </div>
+    </div>
+</body>
+</html>

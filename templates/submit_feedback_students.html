@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Feedback - CSCB20</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flash-messages">
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+    <div class="header">
+
+        <h1>CSCB20 - Anonymous Feedback(students)</h1>
+    </div>
+
+    <div class="main">
+        <h2>Submit Feedback</h2>
+
+        <form action="{{ url_for('submit_feedback_students') }}" method="POST">
+            <div class="form-group">
+                <label for="teacher_select">Select Teacher:</label>
+                <select name="teacher_id" id="teacher_select" class="navigation_button" required>
+                    <option value="" disabled selected>Choose a teacher</option>
+                    {% for teacher in teachers %}
+                    <option value="{{ teacher.teacher_id }}">{{ teacher.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="feedback_Q1">Q1. What do you like about the instructor’s teaching?*</label>
+                <textarea class="form-control" id="feedback_Q1" name="feedback_Q1" rows="3" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="feedback_Q2">Q2. What do you recommend the instructor to do to improve their teaching?*</label>
+                <textarea class="form-control" id="feedback_Q2" name="feedback_Q2" rows="3" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="feedback_Q3">Q3. What do you like about the labs?*</label>
+                <textarea class="form-control" id="feedback_Q3" name="feedback_Q3" rows="3" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="feedback_Q4">Q4. What do you recommend the lab instructors to do to improve their lab teaching?</label>
+                <textarea class="form-control" id="feedback_Q4" name="feedback_Q4" rows="3" required></textarea>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="footer">
+        <p>University of Toronto </p>
+    </div>
+</div>
+</body>
+</html>
