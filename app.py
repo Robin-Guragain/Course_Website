@@ -65,7 +65,7 @@ class RemarkRequest(Base):
     status = Column(Text)
 
 
-engine = create_engine("sqlite:////Users/robin/Downloads/Assignment3.db", echo=True)
+engine = create_engine("sqlite:///Assignment3.db", echo=True)
 Session = sessionmaker(bind=engine)
 database = Session()
 
