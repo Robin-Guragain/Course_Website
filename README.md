@@ -1,1 +1,3 @@
 # Course_Website
+
+This Flask web app is a course portal system, enabling students and teachers to handle academic interactions. Students can check their grades, ask for remarks, and give feedback. Teachers can input grades, read feedback, and deal with remark requests. The app uses SQLAlchemy and SQLite, and has secure login with password hashing. It also includes test accounts for both roles. To run the system, you must install Flask, SQLAlchemy, and Flask-Bcrypt. The app has a well-organized structure with a main application file, templates, and a database that creates itself. It has security features like session management and CSRF protection. This app shows how to use role-based access and work with Flask databases.
